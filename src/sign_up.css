@@ -1,0 +1,68 @@
+.sign-in {
+    box-shadow: black 1px 1px 5px;
+    border-radius: 10px;
+    min-width: 50vw;
+    max-width: 50vw;
+    min-height: 60vh ;
+    display: flex;
+    align-items: normal;
+    flex-direction: column;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+.sign-up-form {
+
+}
+.component-label {
+    color: black;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.error-div {
+    color: black;
+    width: 35vw;
+    height: 50px;
+    border-radius: 5px;
+    border-color: rgb(165, 7, 38);
+    background-color: rgb(243, 184, 196);
+    border-width: 2px;
+    border-style: solid;
+    padding: 5px;
+    font-size: 1.1rem;
+}
+.sign-in-input {
+    width: 35vw;
+    height: 50px;
+    margin: 10px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    font-size: 1.2rem;
+
+}
+.submit-div  {
+    display: flex;
+    width: 100%;
+    height: 150px;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.submit-signup-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    margin: 10px; /* Blue color, you can change this */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    height: 50px;
+}
+.submit-button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}

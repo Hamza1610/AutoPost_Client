@@ -1,0 +1,50 @@
+.home {
+    color: black;
+}
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    width: 100vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+.label {
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: bold;
+    margin: 10px;
+}
+.nav-content {
+    margin: 5px;
+    display: flex;
+    width: 50vw;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.nav-bars {
+    display: flex;
+    margin: 0px 5px;
+}
+.nav-content div {
+    color: black;
+    margin: 10px;
+}
+.nav-content .nav-bars div:hover {
+    transition: ease-in-out .5s;
+    color: #0056b3;
+    font-weight: bold;
+}
+.sign-up-btn {
+    margin: 5px;
+}
+.home-content {
+    /* To remove the height later*/
+    width: 100vw;
+    height: 700px;
+
+}
