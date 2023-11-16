@@ -3,6 +3,7 @@ import './App.css';
 import Home from "./Home";
 import Signin from "./sign_up";
 import Login from "./log_in";
+import Auth from "./authenticate-page";
 
 function App() {
   
@@ -12,6 +13,7 @@ function App() {
         <Switch>
           <Route path="/api/" exact Component={Home} />
           <Route path="/sign-up" exact Component={Signin} />
+          <Route path="/auth/" exact Component={Auth} />
           <Route path="/log-in" exact Component={Login} />
 
         </Switch>
