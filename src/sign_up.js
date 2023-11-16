@@ -30,7 +30,7 @@ const Signup = () => {
             console.log("Registered successfully");
             onAuthStateChanged(auth, (user) => {
                 if (user) {
-                navigate("/api/");
+                navigate("/auth/");
                 }
             });
 
