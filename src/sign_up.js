@@ -14,29 +14,30 @@ const Signup = () => {
     const [error, setError] = useState('');
 
     const handleEmailPasswordSignUp = async () => {
-        if (password !== confirmPassword) {
+        if (password === confirmPassword) {
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                console.log('Email/Password user:', user);
+                setError('');
+                setEmail('');
+                setPassword('');
+                setConfirmPassword('');
+                console.log("Registered successfully");
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                    navigate("/auth/");
+                    }
+                });
+    
+            } catch (error) {
+                console.log('Email/Password error:', error.message);
+                setError(error.message);
+            }
+        }
+        else {
             setError('Password and Confirm password do not match');
             return;
-        }
-
-        try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-            console.log('Email/Password user:', user);
-            setError('');
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-            console.log("Registered successfully");
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                navigate("/auth/");
-                }
-            });
-
-        } catch (error) {
-            console.log('Email/Password error:', error.message);
-            setError(error.message);
         }
     };
 

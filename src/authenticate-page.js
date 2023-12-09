@@ -12,7 +12,7 @@ const Authenticate = () => {
         className="auth-page"
         domain={process.env.REACT_APP_CLIENT_DOMAIN}
         clientId={process.env.REACT_APP_CLIEN_ID}
-        redirectUrl={window.location.origin}
+        redirectUrl={window.location.origin()}
         >
         {/* Your application code goes here */}
         <FacebookLogin />
