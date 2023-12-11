@@ -1,4 +1,5 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import {} from 'firebase/auth'
+
 const FacebookLogin = () => {
   const { loginWithRedirect, loginWithPopup, logout, isAuthenticated } = useAuth0();
   

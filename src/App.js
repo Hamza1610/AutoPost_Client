@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes as Switch, Route } from "react-router-dom";
 import './App.css';
 import Home from "./Home";
-import Signin from "./sign_up";
-import Login from "./log_in";
+import SignUp from "./SignUp";
+import SignIn from "./SignIn";
 import Auth from "./authenticate-page";
 
 function App() {
@@ -12,10 +12,9 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/api/" exact Component={Home} />
-          <Route path="/sign-up" exact Component={Signin} />
+          <Route path="/sign-up" exact Component={SignUp} />
           <Route path="/auth/" exact Component={Auth} />
-          <Route path="/log-in" exact Component={Login} />
-
+          <Route path="/sign-in" exact Component={SignIn} />
         </Switch>
       </div>
     </Router>
