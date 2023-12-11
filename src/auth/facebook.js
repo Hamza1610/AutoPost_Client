@@ -1,22 +1,24 @@
-import {} from 'firebase/auth'
+import { loginWithPopup, logout, isAuthenticated } from 'firebase/auth';
 
 const FacebookLogin = () => {
-  const { loginWithRedirect, loginWithPopup, logout, isAuthenticated } = useAuth0();
   
+  const log = loginWithPopup()
+
   const handleLogIn = async () => {
-    const response = await loginWithRedirect("facebook");
-    console.log(response);
+    const response = await log('facebook')
+    console.log('log in', response);
   };
   const handleLogOut = async () => {
     // Using logout instead
-    console.log('Log out');
+    const response = await logout()
+    console.log('Log out: ', response);
   };
 
   return (
     <div className="social-div facebook-div">
       <h4 className="status">Status: {isAuthenticated ? "Online" : "Offline"}</h4>
       <button onClick={handleLogIn}>Login Facebook</button>
-      <button onClick={logout}>Logout Facebook</button>
+      <button onClick={handleLogOut}>Logout Facebook</button>
     </div>
   );
 };
