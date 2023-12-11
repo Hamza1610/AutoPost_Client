@@ -1,13 +1,19 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { loginWithPopup, logout, isAuthenticated } from 'firebase/auth';
 
 
 const LinkedInLogin = () => {
-  const { loginWithPopup, logout, isAuthenticated } = useAuth0();
   
+  const log = loginWithPopup()
+
   const handleLogIn = async () => {
-    const response = await loginWithPopup("linkedin");
-    console.log(response);
+    const response = await log('linkedIn')
+    console.log('log in', response);
+  };
+  const handleLogOut = async () => {
+    // Using logout instead
+    const response = await logout()
+    console.log('Log out: ', response);
   };
 
   return (
@@ -15,7 +21,7 @@ const LinkedInLogin = () => {
       <h4 className="status">Status: {isAuthenticated ? "Online" : "Offline"}</h4>
       <div className="log-buttons">
         <button onClick={handleLogIn}>Login LinkedIn</button>
-        <button onClick={logout}>Logout LinkedIn</button>
+        <button onClick={handleLogOut}>Logout LinkedIn</button>
       </div>
     </div>
   );
