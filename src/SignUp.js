@@ -1,13 +1,13 @@
 import { auth } from './firebase-config';
-import { FacebookAuthProvider, onAuthStateChanged } from "firebase/auth";
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-
+import { onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import './all.css'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
 const SignUp =  () => {
@@ -16,38 +16,6 @@ const SignUp =  () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-
-    const handleGoogleSignUp = async () => {
-
-        try {
-            const provider = new GoogleAuthProvider();
-            const userCredential = await signInWithPopup(auth, provider);
-            const user = userCredential.user;
-            console.log('Google user:', user);
-            setError('');
-            console.log("Registered with Google successfully");
-            Navigate('/library')
-        } catch (error) {
-            console.log('Google error:', error.message);
-            setError(error.message);
-        }
-    };
-
-    const handleFacebookSignUp = async () => {
-
-        try {
-            const provider = new FacebookAuthProvider();
-            const userCredential = await signInWithPopup(auth, provider);
-            const user = userCredential.user;
-            console.log('Facebook user:', user);
-            setError('');
-            console.log("Registered with Facebook successfully");
-            Navigate('/library')
-        } catch (error) {
-            console.log('Facebook error:', error.message);
-            setError(error.message);
-        }
-    };
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -65,7 +33,7 @@ const SignUp =  () => {
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         console.log(user);
-                        Navigate('/library')
+                        return (Navigate('/library'))
                     }
                 });
             } else {
@@ -79,19 +47,13 @@ const SignUp =  () => {
     }
 
     return (
-        <Container>
-            <Row md={4}>
-                <Col sm={2}>
-                    <h1 >Sign up</h1>
-                </Col>
-            </Row>
-            <Row className='align-items-center h-75 w-100 justify-content-center' md={4} >
-                <Col >
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Label style={{fontSize: '1.3em'}}>Sign up your account: </Form.Label>
+        <Container className='sign-up'>
+            <Row className='align-items-center h-75 w-100 justify-content-center' md={2} lg={2} sm={12} xs={12}>
+                <Col className='sign-up-col'>
+                    <Form onSubmit={handleSubmit} className='sign-up-form'>
+                        <Form.Label className='sign-up-label'><h1 >Sign up</h1> </Form.Label>
                         {error && (<p style={{color: 'crimson'}}>{error}</p>) }
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
+                        <Form.Group className="sign-up-input mb-3" controlId="formBasicEmail" sm={1} >
                             <Form.Control
                                 name='email'
                                 size='lg'
@@ -103,8 +65,7 @@ const SignUp =  () => {
                             />
                         </Form.Group>
             
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
+                        <Form.Group className="sign-up-input mb-3" controlId="formBasicPassword">
                             <Form.Control
                                 name='password'
                                 size='lg'
@@ -116,13 +77,12 @@ const SignUp =  () => {
                             />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-                            <Form.Label>Confirm password</Form.Label>
+                        <Form.Group className="sign-up-input mb-3" controlId="formBasicConfirmPassword">
                             <Form.Control
                                 name='confirm'
                                 size='lg'
                                 type="password"
-                                placeholder="confirm password"
+                                placeholder="Confirm password"
                                 className='w-100'
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
@@ -136,23 +96,6 @@ const SignUp =  () => {
                         Submit
                         </Button><br/>
                         <Form.Label>Already registered an account? <a href='/sign-in'>Sign in</a></Form.Label>
-                    </Form>
-                    <Form>
-                        <hr style={{fontSize: '100px', color: 'white'}}/>
-                        <Form.Group >
-                            <Button 
-                                size='lg'
-                                type='submit'
-                                className='m-3'
-                                onClick={handleGoogleSignUp}
-                                >Google</Button>
-                            <Button
-                                size='lg'
-                                type='submit'
-                                className='m-3'
-                                onClick={handleFacebookSignUp}
-                                >Facebook</Button>
-                        </Form.Group>
                     </Form>
                 </Col>
             </Row>
