@@ -4,3 +4,9 @@
 .status {
     color: black;
 }
+
+.sign-out-div {
+    display: flex;
+    height: 150px;
+    align-items: end;
+}
