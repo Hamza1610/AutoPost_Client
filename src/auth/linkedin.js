@@ -8,13 +8,12 @@ import Button from 'react-bootstrap/Button';
 const LinkedInLogin = () => {
 
   const [User, setUser] = useState(null)
-
-  const onlineIndicator = { width: '20px', height:'20px', borderRadius:'50%', backgroundColor:'green'}
-  const offlineIndicator = { width: '20px', height:'20px', borderRadius:'50%', backgroundColor:'crimson'}
+  const [indicator, setIndicator] = useState({ width: '20px', height:'20px', borderRadius:'50%', backgroundColor:'crimson'})
 
   const handleLogIn = async () => {
     try {
       // Sign in using a popup.
+      console.log(localStorage.getItem('user_li'));
       const provider = new TwitterAuthProvider();
       const result = await signInWithPopup(auth, provider);
 
@@ -25,6 +24,7 @@ const LinkedInLogin = () => {
       const credential = provider.credentialFromResult(auth, result);
       const token = credential.accessToken;
 
+      localStorage.setItem('user_li', JSON.stringify(user));
       console.log('User:', user);
       console.log('Token:', token);
     } catch (error) {
@@ -43,10 +43,14 @@ const LinkedInLogin = () => {
     }
   };
 
+  if (localStorage.getItem('user_fb')) {
+    setIndicator({width: '20px', height:'20px', borderRadius:'50%', backgroundColor:'green'})
+  }
+
   return (
     <div className="social-div twitter-div mb-3">
       <h2>LinkedIn</h2>
-      <h5 className="status">Status: {User ? <div style={onlineIndicator}></div> : <div style={offlineIndicator}></div>}</h5>
+      <h5 className="status">Status: {User ? <div style={indicator}></div> : <div style={indicator}></div>}</h5>
       <Button className="m-2" onClick={handleLogIn}>Login </Button>
       <Button className="m-2" variant="danger" onClick={handleLogOut}>Logout</Button>
     </div>
