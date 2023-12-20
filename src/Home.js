@@ -21,14 +21,13 @@ const Home = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const user = localStorage.getItem('user')
-        console.log(user);
-        if (user) {
+
+        try {
             const data = new FormData()
-                data.append("user", user)
                 data.append("message", post)
                 for (let i = 0; i < postImages.length; i++) {
                     data.append('images', postImages[i]);
+                    console.log(postImages[i].path);
                   }
 
             const response = await axios.post('/api/post', data);
@@ -45,8 +44,9 @@ const Home = () => {
             }
             
 
-        } else {
-            setError("User is unknown please Sign-in to use the our feature")
+        } catch(error) {
+            setError("User is unknown please Sign-in to use the our feature", error)
+            console.log(error);
         }
 
     }
@@ -83,7 +83,7 @@ return (
 
         {/* Form component */}
         <div className='post-form-div'>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Text><h2>Welcome to Autopost</h2></Form.Text>
                 <Form.Text text-muted="true">Post to your social media platforms with one click</Form.Text>
                 <Form.Group
