@@ -55,6 +55,7 @@ const TwitterLogin = () => {
   return (
     <div className="social-div twitter-div mb-3">
       <h2>Twitter</h2>
+      <hr />
       <h5 className="status">Status: {User ? <div style={indicator}></div> : <div style={indicator}></div>}</h5>
       <Button className="m-2" onClick={handleLogIn}>Login </Button>
       <Button className="m-2" variant="danger" onClick={handleLogOut}>Logout</Button>
